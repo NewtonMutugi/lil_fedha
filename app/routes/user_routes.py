@@ -1,9 +1,12 @@
 # app/routes/user_routes.py
-from flask_restful import Resource, reqparse
+from flask import Blueprint
+from flask_restful import Api, Resource, reqparse
 from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
-from common import db
-from models import ExpensesCategories, User, hash_password, verify_password
+from app.common import db, hash_password, verify_password
+from app.models import User
 
+user_blueprint = Blueprint('user', __name__)
+api = Api(user_blueprint)
 
 class UserRegister(Resource):
     def post(self):
@@ -11,6 +14,8 @@ class UserRegister(Resource):
         parser.add_argument("username", type=str, required=True)
         parser.add_argument("email", type=str, required=True)
         parser.add_argument("password", type=str, required=True)
+        parser.add_argument("first_name", type=str, required=True)
+        parser.add_argument("last_name", type=str, required=True)
         args = parser.parse_args()
 
         # Hash the password before saving it in the database (you should use a secure hashing method)
@@ -41,6 +46,8 @@ class UserLogin(Resource):
             return {"access_token": access_token}, 200
         else:
             return {"message": "Invalid credentials"}, 401
+
+
 
 
 class UserProfile(Resource):
@@ -78,4 +85,8 @@ class UserProfile(Resource):
         else:
             return {"message": "User not found"}, 404
 
+
+api.add_resource(UserRegister, "/api/user/register")
+api.add_resource(UserLogin, "/api/user/login")
+api.add_resource(UserProfile, "/api/user/profile")
 

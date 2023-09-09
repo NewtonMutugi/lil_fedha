@@ -1,8 +1,13 @@
 # app/routes/goals_routes.py
-from flask_restful import Resource, reqparse
+from datetime import datetime
+from flask import Blueprint
+from flask_restful import Api, Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from common import db
-from models import SavingGoals, datetime
+from app.common import db
+from app.models import SavingGoals
+
+goals_blueprint = Blueprint('goals', __name__)
+api = Api(goals_blueprint)
 
 class SavingGoalsResource(Resource):
         @jwt_required()
@@ -46,5 +51,4 @@ class SavingGoalsResource(Resource):
             db.session.commit()
             return {"message": "Saving goal added successfully"}, 201
 
-
-
+api.add_resource(SavingGoalsResource, "/api/goals")

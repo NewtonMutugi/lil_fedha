@@ -3,10 +3,14 @@ from flask import Flask
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
-
+from app.common import init_app
 from app.config import SQLALCHEMY_DATABASE_URI
 from app.config import SQLALCHEMY_TRACK_MODIFICATIONS
 from app.config import SECRET_KEY
+from app.routes.user_routes import user_blueprint
+from app.routes.expenses_routes import expenses_blueprint
+from app.routes.goals_routes import goals_blueprint
+from app.common import common_blueprint
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
@@ -15,6 +19,11 @@ app.config['SECRET_KEY'] = SECRET_KEY
 api = Api(app)
 jwt = JWTManager(app)
 
-# Initialize the database
+# Initialize the app with common configurations
+init_app(app)
 
-# Import routes here (see next step)
+# Register your blueprints
+app.register_blueprint(common_blueprint)  # Register the common blueprint
+app.register_blueprint(user_blueprint, url_prefix='/users')
+app.register_blueprint(expenses_blueprint, url_prefix='/expenses')
+app.register_blueprint(goals_blueprint, url_prefix='/goals')

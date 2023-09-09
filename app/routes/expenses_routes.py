@@ -1,9 +1,12 @@
 # app/routes/expenses_routes.py
-from flask_restful import Resource, reqparse
+from flask import Blueprint
+from flask_restful import Api, Resource, reqparse
 from flask_jwt_extended import jwt_required
-from common import db
-from models import ExpensesCategories
+from app.common import db
+from app.models import ExpensesCategories
 
+expenses_blueprint = Blueprint('expenses', __name__)
+api = Api(expenses_blueprint)
 
 class ExpensesCategoriesResource(Resource):
         @jwt_required()
@@ -33,3 +36,5 @@ class ExpensesCategoriesResource(Resource):
             db.session.add(category)
             db.session.commit()
             return {"message": "Expense category added successfully"}, 201
+
+api.add_resource(ExpensesCategoriesResource, "/api/expenses/categories")

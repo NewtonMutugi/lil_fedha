@@ -2,8 +2,9 @@
 from flask import app
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import pbkdf2_sha256
+from app.common import db
 
-db = SQLAlchemy(app)
+
 
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
