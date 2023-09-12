@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles/bills.css">
+	<title>LilFedha Bills</title>
+
+</head>
+
+<body>
+	<section class="container">
+		<h2>Add your Monthly bills</h2>
+		<table class="bills-table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Amount</th>
+					<th>Date Due</th>
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr>
+					<td><input type="text" name="billName[]" placeholder="Enter bill name"></td>
+					<td><input type="number" name="billAmount[]" placeholder="Enter amount"></td>
+					<td><input type="date" name="billDueDate[]"></td>
+				</tr>
+				<tr>
+					<td><input type="text" name="billName[]" placeholder="Enter bill name"></td>
+					<td><input type="number" name="billAmount[]" placeholder="Enter amount"></td>
+					<td><input type="date" name="billDueDate[]"></td>
+				</tr>
+				<tr>
+					<td><input type="text" name="billName[]" placeholder="Enter bill name"></td>
+					<td><input type="number" name="billAmount[]" placeholder="Enter amount"></td>
+					<td><input type="date" name="billDueDate[]"></td>
+				</tr>
+
+			</tbody>
+		</table>
+		<button id="addBillButton">Add</button>
+		<button id="createBudgetButton" class="budget-button">Create Budget</button>
+	</section>
+
+	<script src="bills.js"></script>
+</body>
+
+</html>
