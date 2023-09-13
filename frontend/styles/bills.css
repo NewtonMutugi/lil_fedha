@@ -4,6 +4,52 @@ body {
 	font-family: Arial, sans-serif;
 }
 
+.sidebar {
+	background-color: #333;
+	color: white;
+	width: 250px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	/* new */
+}
+
+.sidebar-header {
+	background-color: #222;
+	padding: 20px;
+	text-align: center;
+}
+
+.sidebar-header h1 {
+	font-size: 24px;
+	margin: 0;
+}
+
+.sidebar-menu {
+	padding: 20px;
+}
+
+.sidebar-menu button {
+	background-color: transparent;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.sidebar-menu button:hover {
+	background-color: #222;
+}
+
+.dashboard-content {
+	margin-left: 250px;
+	padding: 20px;
+}
 
 .container {
 	background-color: #f2f2f2;

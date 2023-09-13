@@ -11,40 +11,77 @@
 
 <body>
 	<section class="container">
-		<h2>Add your Monthly bills</h2>
-		<table class="bills-table">
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Amount</th>
-					<th>Date Due</th>
-				</tr>
-			</thead>
-			<tbody>
+		<div class="row">
+			<div class="col-md-3">
+				<!-- Sidebar -->
+				<div class="sidebar">
+					<div class="sidebar-header">
+						<h1>LilFedha</h1>
+					</div>
+					<!-- Add sidebar navigation links if needed -->
+					<div class="sidebar-menu">
+						<a href="dashboard.html"><button
+								class="btn btn-link text-center">Home</button></a>
+						<a href="bills.html"><button
+								class="btn btn-link text-center">Bills</button></a>
+						<a href="savings.html"><button
+								class="btn btn-link text-center">Savings</button></a>
+						<a href="investments.html"><button
+								class="btn btn-link text-center">Investments</button></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9 ml-md-auto">
 
-				<tr>
-					<td><input type="text" name="billName[]" placeholder="Enter bill name"></td>
-					<td><input type="number" name="billAmount[]" placeholder="Enter amount"></td>
-					<td><input type="date" name="billDueDate[]"></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="billName[]" placeholder="Enter bill name"></td>
-					<td><input type="number" name="billAmount[]" placeholder="Enter amount"></td>
-					<td><input type="date" name="billDueDate[]"></td>
-				</tr>
-				<tr>
-					<td><input type="text" name="billName[]" placeholder="Enter bill name"></td>
-					<td><input type="number" name="billAmount[]" placeholder="Enter amount"></td>
-					<td><input type="date" name="billDueDate[]"></td>
-				</tr>
+				<div class="dashboard-content">
+					<h2>Add your Monthly bills</h2>
+					<table class="bills-table">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Amount</th>
+								<th>Date Due</th>
+							</tr>
+						</thead>
+						<tbody>
 
-			</tbody>
-		</table>
-		<button id="addBillButton">Add</button>
-		<button id="createBudgetButton" class="budget-button">Create Budget</button>
+							<tr>
+								<td><input type="text" name="billName[]"
+										placeholder="Enter bill name">
+								</td>
+								<td><input type="number" name="billAmount[]"
+										placeholder="Enter amount">
+								</td>
+								<td><input type="date" name="billDueDate[]"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="billName[]"
+										placeholder="Enter bill name">
+								</td>
+								<td><input type="number" name="billAmount[]"
+										placeholder="Enter amount">
+								</td>
+								<td><input type="date" name="billDueDate[]"></td>
+							</tr>
+							<tr>
+								<td><input type="text" name="billName[]"
+										placeholder="Enter bill name">
+								</td>
+								<td><input type="number" name="billAmount[]"
+										placeholder="Enter amount">
+								</td>
+								<td><input type="date" name="billDueDate[]"></td>
+							</tr>
+
+						</tbody>
+					</table>
+					<button id="addBillButton">Add</button>
+					<button id="createBudgetButton" class="budget-button">Create Budget</button>
+				</div>
+			</div>
 	</section>
 
-	<script src="bills.js"></script>
+	<script src="javasript/bills.js"></script>
 </body>
 
 </html>

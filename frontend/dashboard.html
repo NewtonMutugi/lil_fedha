@@ -10,51 +10,53 @@
 </head>
 
 <body>
-
-	<div class="sidebar">
-		<div class="sidebar-header">
-			<h1>LilFedha</h1>
-			<div class="user-greeting">
-				<p>Hi, [First Name]</p>
-				<div class="top-buttons">
-					<button id="aboutButton">About</button>
-					<button id="contactButton">Contact Us</button>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<!-- Sidebar -->
+				<div class="sidebar">
+					<div class="sidebar-header">
+						<h1>LilFedha</h1>
+					</div>
+					<!-- Add sidebar navigation links if needed -->
+					<div class="sidebar-menu">
+						<a href="dashboard.html"><button
+								class="btn btn-link text-center">Home</button></a>
+						<a href="bills.html"><button
+								class="btn btn-link text-center">Bills</button></a>
+						<a href="savings.html"><button
+								class="btn btn-link text-center">Savings</button></a>
+						<a href="investments.html"><button
+								class="btn btn-link text-center">Investments</button></a>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="sidebar-menu">
-			<button id="homeButton">Home</button>
-			<button id="billsButton">Bills</button>
-			<button id="savingsButton">Savings</button>
-			<button id="investmentsButton">Investments</button>
-			<button id="profileButton">Profile</button>
+			<div class="col-md-9 ml-md-auto">
+
+				<div class="dashboard-content">
+					<div class="finance-summary">
+						<h2>Your Finance Summary</h2>
+						<div class="charts">
+							<div class="pie-chart">
+								<!-- Add your pie chart content here -->
+							</div>
+							<div class="line-chart">
+								<!-- Add your line chart content here -->
+							</div>
+						</div>
+						<div class="expense-table">
+							<!-- Add your expense table content here -->
+							<table>
+								<!-- Table content here -->
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
-
-	<div class="dashboard-content">
-		<div class="finance-summary">
-			<h2>Your Finance Summary</h2>
-			<div class="charts">
-
-				<div class="pie-chart">
-
-				</div>
-
-				<div class="line-chart">
-
-				</div>
-			</div>
-			<div class="expense-table">
-
-				<table>
-
-				</table>
-			</div>
-		</div>
-	</div>
-
-	<script src="dashboard.js"></script>
+	<script src="javasript/dashboard.js"></script>
 </body>
 
 </html>

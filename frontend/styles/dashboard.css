@@ -4,13 +4,16 @@ body {
 	font-family: Arial, sans-serif;
 }
 
-
 .sidebar {
 	background-color: #333;
 	color: white;
 	width: 250px;
 	height: 100%;
 	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	/* new */
 }
 
 .sidebar-header {
@@ -43,7 +46,6 @@ body {
 	background-color: #222;
 }
 
-
 .top-section {
 	background-color: #333;
 	color: white;
@@ -51,26 +53,44 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding: 10px 20px;
-	margin-left: 250px;
 
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	position: relative;
+	/* Updated: Remove this line */
+	/* new */
 }
 
-.top-section p {
+.dashboard-content {
+	margin-left: 250px;
+	padding: 20px;
+}
+
+/* Updated: Add this style to move "Hi, [First Name]" to the right */
+.user-greeting p {
 	font-size: 16px;
 	margin: 0;
+	margin-left: auto;
+	/* Adjust the margin as needed */
 }
 
-.top-section .top-buttons {
+.top-section {
 	display: flex;
 	align-items: center;
 }
 
-.top-section button {
-	background-color: #FFA500;
-	color: white;
-	border: none;
-	padding: 5px 10px;
-	margin-left: 10px;
-	cursor: pointer;
+
+.top-section::before {
+	content: "";
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	width: 20px;
+	height: 20px;
+
+	transform: rotate(-45deg);
+	opacity: 0.8;
+}
+
+.top-section.active::before {
+	opacity: 1;
 }
