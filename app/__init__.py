@@ -11,6 +11,7 @@ from app.routes.user_routes import user_blueprint
 from app.routes.expenses_routes import expenses_blueprint
 from app.routes.goals_routes import goals_blueprint
 from app.common import common_blueprint
+from app.routes.frontend_routes import frontend_blueprint
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
@@ -27,3 +28,4 @@ app.register_blueprint(common_blueprint)  # Register the common blueprint
 app.register_blueprint(user_blueprint, url_prefix='/users')
 app.register_blueprint(expenses_blueprint, url_prefix='/expenses')
 app.register_blueprint(goals_blueprint, url_prefix='/goals')
+app.register_blueprint(frontend_blueprint, url_prefix='/')
