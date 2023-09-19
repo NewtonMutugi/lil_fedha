@@ -1,3 +1,4 @@
+# app/routes/frontend_routes.py
 from flask import Blueprint, render_template
 
 
