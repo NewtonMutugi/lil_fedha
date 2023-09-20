@@ -14,16 +14,17 @@ from app.routes.goals_routes import goals_blueprint
 from app.common import common_blueprint, init_app
 from app.routes.frontend_routes import frontend_blueprint
 from app.common import db
+from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
 app.config['SECRET_KEY'] = SECRET_KEY
-
 app.config["JWT_SECRET_KEY"] = "super-secret"  # Change this!
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = ACCESS_EXPIRES
 api = Api(app)
 jwt = JWTManager(app)
+bootstrap = Bootstrap(app)
 
 
 # Initialize the app with common configurations

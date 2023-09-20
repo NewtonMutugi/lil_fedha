@@ -48,7 +48,7 @@ class UserLogin(Resource):
         user = User.query.filter_by(username=args["username"]).first()
         if user and verify_password(args["password"], user.password_hash):
             access_token = create_access_token(identity=user.user_id)
-            return {"access_token": access_token}, 200
+            return {"jwt_token": access_token}, 200
         else:
             return {"message": "Invalid credentials"}, 401
 
