@@ -1,7 +1,8 @@
 # app/routes/frontend_routes.py
-from flask import Blueprint, flash, jsonify, make_response, redirect, render_template, request, url_for
-from flask_jwt_extended import set_access_cookies
+from flask import Blueprint, flash, jsonify, make_response, redirect, render_template, request, url_for, session
+from flask_jwt_extended import set_access_cookies, jwt_required, get_jwt_identity
 import requests
+from app.config import BASE_URL
 
 from app.forms import LoginForm, SignupForm
 
@@ -32,27 +33,27 @@ def login():
         print(user_data)
         # Send a POST request to the local Flask endpoint `/api/user/login`
         headers = {'Content-Type': 'application/json'}
-        response = requests.post("http://localhost:5000/api/user/login", json=user_data)
+        login_url = f"{BASE_URL}/api/user/login"
+        response = requests.post(login_url, json=user_data)
         print(response)
 
         # If the login is successful, store the JWT authorization token in a cookie
         if response.status_code == 200:
             # Authentication successful, store the JWT token in a cookie
             jwt_token = response.json().get('jwt_token')
-            resp = make_response(render_template("dashboard.html", form=form, user=user))
-            resp.set_cookie('jwt_token', jwt_token)
-            # set_access_cookies(response=response, encoded_access_token=jwt_token)
-            return render_template("dashboard.html",form=form,user=user)
+            session['jwt_token'] = jwt_token
 
+            return redirect(url_for('frontend.dashboard'))
         # If the login is unsuccessful, prompt the user that the login credentials are incorrect
         elif response.status_code == 401:
             flash('Incorrect login credentials.')
-            return redirect(url_for('frontend.login'))
 
     return render_template("log_in.html", form=form, user=user)
 
-
-
+@frontend_blueprint.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session.pop('jwt_token', None)
+    return redirect(url_for('frontend.login'))
 
 @frontend_blueprint.route('sign_up', methods=['POST', 'GET'])
 def sign_up():
@@ -66,7 +67,8 @@ def sign_up():
             "last_name": form.last_name.data,
             "date_of_birth": str(form.date_of_birth.data)
         }
-        response = requests.post("http://localhost:5000/api/user/register", json=user_data)
+        register_url = f"{BASE_URL}/api/user/register"
+        response = requests.post(register_url, json=user_data)
         print(response)
 
         if response.status_code == 201:
@@ -80,15 +82,24 @@ def sign_up():
 
 @frontend_blueprint.route('dashboard', methods=['POST', 'GET'])
 def dashboard():
-    return render_template("dashboard.html")
+    user = None
+    jwt_token = f"Bearer {session.get('jwt_token')}"
+    profile_url = f"{BASE_URL}/api/user/profile"
+    response = requests.get(profile_url,headers={"Authorization": jwt_token})
+    print(response)
+    if response.status_code == 200:
+        user = response.json()
+        print(user)
+
+    return render_template("home_dashboard.html", user=user)
 
 
-@frontend_blueprint.route('profile', methods=['POST', 'GET'])
+@frontend_blueprint.route('/profile', methods=['POST', 'GET'])
 def profile():
     return render_template("profile.html")
 
 
-@frontend_blueprint.route('bills', methods=['POST', 'GET'])
+@frontend_blueprint.route('/bills', methods=['POST', 'GET'])
 def bills():
     return render_template("bills.html")
 

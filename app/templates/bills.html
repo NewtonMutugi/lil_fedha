@@ -1,0 +1,62 @@
+{% extends 'dashboard.html' %}
+
+{# {% include '_sidebar.html' %} #}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bills.css') }}" />
+{% endblock %}
+
+{% block dashboard_content %}
+  <div class="col-md-9 ml-md-auto">
+    <div class="dashboard-content">
+      <h2>Add your Monthly bills</h2>
+      <table class="bills-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Date Due</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <input type="text" name="billName[]" placeholder="Enter bill name" />
+            </td>
+            <td>
+              <input type="number" name="billAmount[]" placeholder="Enter amount" />
+            </td>
+            <td>
+              <input type="date" name="billDueDate[]" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" name="billName[]" placeholder="Enter bill name" />
+            </td>
+            <td>
+              <input type="number" name="billAmount[]" placeholder="Enter amount" />
+            </td>
+            <td>
+              <input type="date" name="billDueDate[]" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" name="billName[]" placeholder="Enter bill name" />
+            </td>
+            <td>
+              <input type="number" name="billAmount[]" placeholder="Enter amount" />
+            </td>
+            <td>
+              <input type="date" name="billDueDate[]" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="addBillButton">Add</button>
+      <button id="removeBillButton">Remove</button>
+      <button id="createBudgetButton" class="budget-button">Create Budget</button>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename = 'js/bills.js') }}"></script>
+{% endblock %}

@@ -4,16 +4,16 @@ from flask import Blueprint
 from flask_restful import Api, Resource, reqparse
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.common import db
-from app.models import SavingGoals
+from app.models import SavingsPlan
 
 goals_blueprint = Blueprint('goals', __name__)
 api = Api(goals_blueprint)
 
-class SavingGoalsResource(Resource):
+class SavingsPlanResource(Resource):
         @jwt_required()
         def get(self):
             current_user_id = get_jwt_identity()
-            goals = SavingGoals.query.filter_by(user_id=current_user_id).all()
+            goals = SavingsPlan.query.filter_by(user_id=current_user_id).all()
             return [
                 {
                     "goals_id": goal.goals_id,
@@ -39,7 +39,7 @@ class SavingGoalsResource(Resource):
             except ValueError:
                 return {"message": "Invalid date format. Use 'YYYY-MM-DD HH:MM:SS'."}, 400
 
-            goal = SavingGoals(
+            goal = SavingsPlan(
                 user_id=current_user_id,
                 goal_name=args["goal_name"],
                 target_amount=args["target_amount"],
@@ -51,4 +51,4 @@ class SavingGoalsResource(Resource):
             db.session.commit()
             return {"message": "Saving goal added successfully"}, 201
 
-api.add_resource(SavingGoalsResource, "/api/goals")
+api.add_resource(SavingsPlanResource, "/api/goals")

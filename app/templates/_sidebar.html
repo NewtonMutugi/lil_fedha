@@ -1,0 +1,17 @@
+<!-- Sidebar -->
+<div class="col-md-3">
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h1>LilFedha</h1>
+    </div>
+    <!-- Add sidebar navigation links if needed -->
+    <div class="sidebar-menu">
+      <a href="{{ url_for('frontend.dashboard') }}" style="text-decoration: none;"><button class="btn btn-link text-center">Home</button></a>
+      <a href="{{ url_for('frontend.bills') }}" style="text-decoration: none;"><button class="btn btn-link text-center">Bills</button></a>
+      <a href="{{ url_for('frontend.savings') }}" style="text-decoration: none;"><button class="btn btn-link text-center">Savings</button></a>
+      <a href="{{ url_for('frontend.logout') }}" style="text-decoration: none;"><button class="btn btn-link text-center">Logout</button></a>
+
+      {# <a href="#"><button class="btn btn-link text-center">Investments</button></a> #}
+    </div>
+  </div>
+</div>

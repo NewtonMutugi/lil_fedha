@@ -1,0 +1,100 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+}
+
+.sidebar {
+	background-color: #333;
+	color: white;
+	width: 250px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	/* new */
+}
+
+.sidebar-header {
+	background-color: #222;
+	padding: 20px;
+	text-align: center;
+}
+
+.sidebar-header h1 {
+	font-size: 24px;
+	margin: 0;
+}
+
+.sidebar-menu {
+	padding: 20px;
+}
+
+.sidebar-menu button {
+	background-color: transparent;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.sidebar-menu button:hover {
+	background-color: #222;
+}
+
+.top-section {
+	background-color: #333;
+	color: white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	position: relative;
+	/* Updated: Remove this line */
+	/* new */
+}
+
+.dashboard-content {
+	margin-left: 250px;
+	padding: 20px;
+}
+
+/* Updated: Add this style to move "Hi, [First Name]" to the right */
+.user-greeting p {
+	font-size: 16px;
+	margin: 0;
+	margin-left: auto;
+	/* Adjust the margin as needed */
+}
+
+.top-section {
+	display: flex;
+	align-items: center;
+}
+
+
+.top-section::before {
+	content: "";
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	width: 20px;
+	height: 20px;
+
+	transform: rotate(-45deg);
+	opacity: 0.8;
+}
+
+.top-section.active::before {
+	opacity: 1;
+}
+
+a {
+	text-decoration: none;
+}

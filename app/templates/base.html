@@ -8,10 +8,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" integrity="sha384-nU14brUcp6StFntEOOEBvcJm4huWjB0OcIeQ3fltAfSmuZFrkAif0T+UtNGlKKQv" crossorigin="anonymous">
+    {% block stylesheets %} {% endblock %}
 
-    <title>LiL fedha</title>
+    <title>{% block title %}{% endblock %} | LiL fedha</title>
   </head>
   <body>
+
     <div class="container">
       {% for message in get_flashed_messages() %}
         <div class="alert alert-warning">
@@ -19,7 +21,6 @@
         </div>
       {% endfor %}
     </div>
-
     {% block content %}
 
     {% endblock %}
