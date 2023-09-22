@@ -1,0 +1,35 @@
+{% extends 'dashboard.html' %}
+
+{# {% include '_sidebar.html' %} #}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/savings.css') }}" />
+{% endblock %}
+
+{% block dashboard_content %}
+  <div class="encouragement">
+    <p>Start your journey to financial freedom by saving. Saving regularly can help you achieve your financial goals faster. Let's get started!</p>
+  </div>
+
+  <div class="savings-form">
+    <h2>Create a Savings Plan</h2>
+    <form>
+      <div class="form-group">
+        <label for="planName">Plan Name</label>
+        <input type="text" id="planName" name="planName" placeholder="Enter plan name" required />
+      </div>
+      <div class="form-group">
+        <label for="monthlyContribution">Monthly Contribution</label>
+        <input type="number" id="monthlyContribution" name="monthlyContribution" placeholder="Enter amount" required />
+      </div>
+      <div class="form-group">
+        <label for="dueDate">Due Date</label>
+        <input type="date" id="dueDate" name="dueDate" required />
+      </div>
+      <div class="form-group">
+        <label for="duration">Duration (in months)</label>
+        <input type="number" id="duration" name="duration" placeholder="Enter duration" required />
+      </div>
+      <button id="createPlanButton" class="create-button">Create Plan</button>
+    </form>
+  </div>
+{% endblock %}

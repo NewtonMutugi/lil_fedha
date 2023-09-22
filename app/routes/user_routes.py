@@ -1,12 +1,17 @@
 # app/routes/user_routes.py
+from datetime import datetime, timedelta, timezone
 from flask import Blueprint
 from flask_restful import Api, Resource, reqparse
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+from flask_jwt_extended import JWTManager, get_jwt, jwt_required, create_access_token, get_jwt_identity
 from app.common import db, hash_password, verify_password
-from app.models import User
+from app.models import TokenBlocklist, User
+
 
 user_blueprint = Blueprint('user', __name__)
 api = Api(user_blueprint)
+
+
+# Callback function to check if a JWT exists in the database blocklist
 
 class UserRegister(Resource):
     def post(self):
@@ -43,12 +48,19 @@ class UserLogin(Resource):
         user = User.query.filter_by(username=args["username"]).first()
         if user and verify_password(args["password"], user.password_hash):
             access_token = create_access_token(identity=user.user_id)
-            return {"access_token": access_token}, 200
+            return {"jwt_token": access_token}, 200
         else:
             return {"message": "Invalid credentials"}, 401
 
-
-
+class UserLogout(Resource):
+    @jwt_required()
+    def delete(self):
+        # Get the raw JWT token from the request
+        raw_jwt = get_jwt()["jti"]
+        now = datetime.now(timezone.utc)
+        db.session.add(TokenBlocklist(jti=raw_jwt, created_at=now))
+        db.session.commit()
+        return {"message": "User logged out successfully"}, 200
 
 class UserProfile(Resource):
     @jwt_required()
@@ -89,4 +101,5 @@ class UserProfile(Resource):
 api.add_resource(UserRegister, "/api/user/register")
 api.add_resource(UserLogin, "/api/user/login")
 api.add_resource(UserProfile, "/api/user/profile")
+api.add_resource(UserLogout, "/api/user/logout")
 

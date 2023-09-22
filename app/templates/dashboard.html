@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}
+  Dashboard
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <!-- Sidebar -->
+      {# <div class="sidebar">
+          <div class="sidebar-header">
+            <h1>LilFedha</h1>
+          </div>
+          <!-- Add sidebar navigation links if needed -->
+          <div class="sidebar-menu">
+            <a href="#"><button class="btn btn-link text-center">Home</button></a>
+            <a href="{{ url_for('frontend.bills') }}"><button class="btn btn-link text-center">Bills</button></a>
+            <a href="#"><button class="btn btn-link text-center">Savings</button></a>
+            <a href="#"><button class="btn btn-link text-center">Investments</button></a>
+          </div>
+        </div>#}
+      {% include '_sidebar.html' %}
+
+      <div class="">
+        <div class="dashboard-content">
+          {% block dashboard_content %}
+
+          {% endblock %}
+          {# <div class="charts">
+              <div class="pie-chart">
+                <!-- Add your pie chart content here -->
+              </div>
+              <div class="line-chart">
+                <!-- Add your line chart content here -->
+              </div>
+            </div>
+            <div class="expense-table">
+              <!-- Add your expense table content here -->
+              <table>
+                <!-- Table content here -->
+              </table>
+            </div>#}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
